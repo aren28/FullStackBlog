@@ -22,6 +22,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
+    "lightningcss": "^1.29.3",
+    "postcss": "^8.5.3",
     "prisma": "^6.6.0",
     "tailwindcss": "^4",
     "typescript": "^5"
