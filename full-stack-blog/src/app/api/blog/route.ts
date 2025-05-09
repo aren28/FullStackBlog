@@ -26,3 +26,24 @@ export const GET = async (req:Request, res: NextResponse) => {
     console.log("DB切断しました。")
   }
 }
+
+// ブログの投稿用API
+export const POST = async (req:Request, res: NextResponse) => {
+  try {
+    const { title,description } = await req.json();
+    await main();
+    const post = await prisma.post.create({
+      data: {
+        title,
+        description,
+      },
+    });
+    return NextResponse.json({ message:"Sucessです。",post },{ status: 201 });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json({ message: "Errorです。",error }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+    console.log("DB切断しました。")
+  }
+}
