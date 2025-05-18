@@ -8,16 +8,18 @@ export async function main() {
     await prisma.$connect();
     console.log('DB接続成功しました。');
   } catch (error) {
-    console.error('DB接続失敗しました。', error);
-    // DB接続失敗時の処理
+    console.error('Error:', error);
     return Error('DB接続失敗しました。');
   }
 }
 
-export const GET = async (_req: Request, _res: NextResponse) => {
+// singlePostの取得
+export const GET = async (req: Request, _res: NextResponse) => {
   try {
     await main();
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findFirst({
+      where: { id: parseInt(req.url.split('/blog/')[1]) },
+    });
     return NextResponse.json({ message: 'Sucessです。', posts }, { status: 200 });
   } catch (error) {
     console.error('Error:', error);
@@ -28,18 +30,17 @@ export const GET = async (_req: Request, _res: NextResponse) => {
   }
 };
 
-// ブログの投稿用API
-export const POST = async (req: Request, _res: NextResponse) => {
+// ブログの編集API
+export const PUT = async (req: Request, _res: NextResponse) => {
   try {
+    const id: number = parseInt(req.url.split('/blog/')[1]);
     const { title, description } = await req.json();
     await main();
-    const post = await prisma.post.create({
-      data: {
-        title,
-        description,
-      },
+    const post = await prisma.post.update({
+      data: { title, description },
+      where: { id },
     });
-    return NextResponse.json({ message: 'Sucessです。', post }, { status: 201 });
+    return NextResponse.json({ message: 'Sucessです。', post }, { status: 200 });
   } catch (error) {
     console.error('Error:', error);
     return NextResponse.json({ message: 'Errorです。', error }, { status: 500 });
