@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run format:check",
+    "fix": "npm run lint -- --fix && npm run format"
   },
   "dependencies": {
     "next": "15.3.1",
@@ -22,8 +26,11 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
     "lightningcss": "^1.29.3",
     "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
     "prisma": "^6.6.0",
     "tailwindcss": "^4",
     "typescript": "^5"
