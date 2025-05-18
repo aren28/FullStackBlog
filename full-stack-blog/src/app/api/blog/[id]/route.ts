@@ -49,3 +49,22 @@ export const PUT = async (req: Request, _res: NextResponse) => {
     console.log('DB切断しました。');
   }
 };
+
+// ブログの削除API
+export const DELETE = async (req: Request, _res: NextResponse) => {
+  try {
+    const id: number = parseInt(req.url.split('/blog/')[1]);
+    
+    await main();
+    const post = await prisma.post.delete({
+      where: { id },
+    });
+    return NextResponse.json({ message: 'Sucessです。', post }, { status: 200 });
+  } catch (error) {
+    console.error('Error:', error);
+    return NextResponse.json({ message: 'Errorです。', error }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+    console.log('DB切断しました。');
+  }
+};
