@@ -54,7 +54,7 @@ export const PUT = async (req: Request, _res: NextResponse) => {
 export const DELETE = async (req: Request, _res: NextResponse) => {
   try {
     const id: number = parseInt(req.url.split('/blog/')[1]);
-    
+
     await main();
     const post = await prisma.post.delete({
       where: { id },
