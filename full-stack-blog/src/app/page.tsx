@@ -49,7 +49,6 @@ export default async function Home() {
       </div>
 
       <div className="w-full flex flex-col justify-center items-center">
-        test
         {formattedDateList.map((post: PostType) => (
           <div
             key={post.id}
@@ -60,7 +59,7 @@ export default async function Home() {
                 <h2 className="mr-auto font-semibold text-2xl">{post.title}</h2>
               </div>
               <Link
-                href={`/blog/edit/1`}
+                href={`/blog/edit/${post.id}`}
                 className="px-4 py-1 text-center text-xl bg-slate-900 rounded-md font-semibold text-slate-200"
               >
                 編集

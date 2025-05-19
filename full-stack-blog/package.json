@@ -33,6 +33,7 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prisma": "^6.6.0",
+    "react-toastify": "^11.0.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

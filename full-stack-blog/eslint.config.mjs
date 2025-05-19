@@ -12,7 +12,7 @@ const ignoredFolders = globalIgnores([
   './.next/*',
   './prisma/*',
   './node_modules/*',
-  './src/generated/*',
+  './src/generated/prisma/*',
 ]);
 
 const compat = new FlatCompat({
