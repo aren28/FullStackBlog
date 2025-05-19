@@ -24,6 +24,21 @@ const editBlog = async (
   return res.json();
 };
 
+const deleteBlog = async (id: number | undefined) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to delete blog post');
+  }
+
+  return res.json();
+};
+
 const PostEdit = ({ params }: { params: { id: number } }) => {
   const router = useRouter();
   const titleRef = useRef<HTMLInputElement | null>(null);
@@ -57,6 +72,31 @@ const PostEdit = ({ params }: { params: { id: number } }) => {
     router.push('/');
   };
 
+  console.log('params.id', params.id);
+
+  const handleDelete = async () => {
+    toast.info('削除中です', {
+      position: 'top-center',
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+    await deleteBlog(params.id);
+    toast.success('削除完了しました', {
+      position: 'top-center',
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+    router.push('/');
+  };
+
   return (
     <>
       <div className="w-full m-auto flex my-4">
@@ -75,10 +115,17 @@ const PostEdit = ({ params }: { params: { id: number } }) => {
               placeholder="記事詳細を入力"
               className="rounded-md px-4 py-2 w-full my-2"
             ></textarea>
-            <button className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100">
+            <button
+              type="submit"
+              className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100"
+            >
               更新
             </button>
-            <button className="ml-2 font-semibold px-4 py-2 shadow-xl bg-red-400 rounded-lg m-auto hover:bg-slate-100">
+            <button
+              type="button"
+              onClick={handleDelete}
+              className="ml-2 font-semibold px-4 py-2 shadow-xl bg-red-400 rounded-lg m-auto hover:bg-slate-100"
+            >
               削除
             </button>
           </form>
