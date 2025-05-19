@@ -31,8 +31,6 @@ export default async function Home() {
     };
   });
 
-  console.log('formattedDateList', formattedDateList);
-
   return (
     <main className="w-full h-full">
       <div className="md:w-2/4 sm:w-3/4 m-auto p-4 my-5 rounded-lg bg-black drop-shadow-xl">
@@ -42,7 +40,7 @@ export default async function Home() {
       <div className="flex my-5">
         <Link
           href={'/blog/add'}
-          className=" md:w-1/6 sm:w-2/4 text-center rounded-md p-2 m-auto bg-slate-300 font-semibold"
+          className=" md:w-1/6 sm:w-2/4 text-center rounded-md p-2 m-auto bg-slate-300 font-semibold hover:bg-slate-950 hover:text-amber-50 transition-all duration-200 ease-in-out"
         >
           ブログ新規作成
         </Link>

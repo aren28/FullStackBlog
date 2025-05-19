@@ -118,6 +118,14 @@ exports.Prisma.PostScalarFieldEnum = {
   title: 'title',
   description: 'description',
   DateTime: 'DateTime',
+  userId: 'userId',
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
 };
 
 exports.Prisma.SortOrder = {
@@ -132,6 +140,7 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   Post: 'Post',
+  User: 'User',
 };
 
 /**

@@ -90,6 +90,14 @@ exports.Prisma.PostScalarFieldEnum = {
   title: 'title',
   description: 'description',
   DateTime: 'DateTime',
+  userId: 'userId',
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
 };
 
 exports.Prisma.SortOrder = {
@@ -104,6 +112,7 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   Post: 'Post',
+  User: 'User',
 };
 /**
  * Create the Client
@@ -117,7 +126,7 @@ const config = {
     },
     output: {
       value:
-        'C:\\Users\\romer\\Desktop\\develop_file\\Training\\next-js-training\\FullStackBlog\\full-stack-blog\\src\\generated\\prisma',
+        'C:\\Users\\romer\\Desktop\\CODING\\FullStackBlog\\full-stack-blog\\src\\generated\\prisma',
       fromEnvVar: null,
     },
     config: {
@@ -132,11 +141,11 @@ const config = {
     ],
     previewFeatures: [],
     sourceFilePath:
-      'C:\\Users\\romer\\Desktop\\develop_file\\Training\\next-js-training\\FullStackBlog\\full-stack-blog\\prisma\\schema.prisma',
+      'C:\\Users\\romer\\Desktop\\CODING\\FullStackBlog\\full-stack-blog\\prisma\\schema.prisma',
     isCustomOutput: true,
   },
   relativeEnvPaths: {
-    rootEnvPath: '../../../.env',
+    rootEnvPath: null,
     schemaEnvPath: '../../../.env',
   },
   relativePath: '../../../prisma',
@@ -149,13 +158,13 @@ const config = {
       url: {
         fromEnvVar: 'DATABASE_URL',
         value:
-          'postgresql://postgres:FullStackDatabase@db.ejzliyjytkdybmbgkojc.supabase.co:5432/postgres',
+          'postgresql://postgres:FullStackBlog@db.ejzliyjytkdybmbgkojc.supabase.co:5432/postgres',
       },
     },
   },
   inlineSchema:
-    '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "prisma-client-js"\n  output   = "../src/generated/prisma"\n}\n\ndatasource db {\n  provider = "postgresql"\n  url      = env("DATABASE_URL")\n}\n\nmodel Post {\n  id          Int      @id @default(autoincrement())\n  title       String\n  description String\n  DateTime    DateTime @default(now())\n}\n',
-  inlineSchemaHash: '3b637732f69540d52adbe50c723cc86a3b3c351a1111db96d1223d433bfab11f',
+    '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "prisma-client-js"\n  output   = "../src/generated/prisma"\n}\n\ndatasource db {\n  provider = "postgresql"\n  url      = env("DATABASE_URL")\n}\n\nmodel Post {\n  id          Int      @id @default(autoincrement())\n  title       String\n  description String\n  DateTime    DateTime @default(now())\n  user        User     @relation(fields: [userId], references: [id])\n  userId      Int\n}\n\nmodel User {\n  id       Int    @id @default(autoincrement())\n  name     String\n  email    String @unique\n  password String\n  posts    Post[] // ← 1人のユーザーが複数の投稿を持てる\n}\n',
+  inlineSchemaHash: '1b089e01ff6894caae5892f3ccccfc1aba775aa091bd069ff76e038e20f5d6b3',
   copyEngine: true,
 };
 
@@ -175,7 +184,7 @@ if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
 }
 
 config.runtimeDataModel = JSON.parse(
-  '{"models":{"Post":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"Int","nativeType":null,"default":{"name":"autoincrement","args":[]},"isGenerated":false,"isUpdatedAt":false},{"name":"title","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"description","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"DateTime","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"DateTime","nativeType":null,"default":{"name":"now","args":[]},"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[],"uniqueIndexes":[],"isGenerated":false}},"enums":{},"types":{}}',
+  '{"models":{"Post":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"Int","nativeType":null,"default":{"name":"autoincrement","args":[]},"isGenerated":false,"isUpdatedAt":false},{"name":"title","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"description","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"DateTime","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"DateTime","nativeType":null,"default":{"name":"now","args":[]},"isGenerated":false,"isUpdatedAt":false},{"name":"user","kind":"object","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"User","nativeType":null,"relationName":"PostToUser","relationFromFields":["userId"],"relationToFields":["id"],"isGenerated":false,"isUpdatedAt":false},{"name":"userId","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":true,"hasDefaultValue":false,"type":"Int","nativeType":null,"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[],"uniqueIndexes":[],"isGenerated":false},"User":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"Int","nativeType":null,"default":{"name":"autoincrement","args":[]},"isGenerated":false,"isUpdatedAt":false},{"name":"name","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"email","kind":"scalar","isList":false,"isRequired":true,"isUnique":true,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"password","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"posts","kind":"object","isList":true,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"Post","nativeType":null,"relationName":"PostToUser","relationFromFields":[],"relationToFields":[],"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[],"uniqueIndexes":[],"isGenerated":false}},"enums":{},"types":{}}',
 );
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel);
 config.engineWasm = undefined;
