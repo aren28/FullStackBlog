@@ -2,6 +2,9 @@
   "name": "full-stack-blog",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "description": "A full-stack blog application built with Next.js, Prisma, and Tailwind CSS.",
+  "author": "Padorina",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -12,6 +15,9 @@
     "check": "npm run lint && npm run format:check",
     "fix": "npm run lint -- --fix && npm run format"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
     "next": "15.3.1",
     "react": "^19.0.0",
@@ -19,9 +25,9 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@prisma/client": "^6.6.0",
+    "@prisma/client": "^6.8.2",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^20.17.48",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "dayjs": "^1.11.13",
@@ -35,6 +41,7 @@
     "prisma": "^6.6.0",
     "react-toastify": "^11.0.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
