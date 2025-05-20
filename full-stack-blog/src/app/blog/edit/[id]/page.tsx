@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/useToast';
 

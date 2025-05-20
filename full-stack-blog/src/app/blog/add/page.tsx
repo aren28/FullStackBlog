@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 import { useToast } from '@/hooks/useToast';
 
@@ -12,7 +12,7 @@ const postBlog = async (title: string | undefined, description: string | undefin
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ title, description }),
+    body: JSON.stringify({ title, description, userId: 1 }),
   });
 
   if (!res.ok) {
