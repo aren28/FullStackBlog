@@ -4,6 +4,8 @@ import React, { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 
+import { useToast } from '@/hooks/useToast';
+
 const postBlog = async (title: string | undefined, description: string | undefined) => {
   const res = await fetch('http://localhost:3000/api/blog', {
     method: 'POST',
@@ -22,34 +24,18 @@ const postBlog = async (title: string | undefined, description: string | undefin
 
 const PostBlog = () => {
   const router = useRouter();
-
+  const { showSuccess, showInfo } = useToast();
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    toast.info('送信中です', {
-      position: 'top-center',
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    showInfo('投稿中です...');
 
     await postBlog(titleRef.current?.value, descriptionRef.current?.value);
 
-    toast.success('投稿完了しました', {
-      position: 'top-center',
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    showSuccess('投稿が完了しました。');
 
     router.push('/');
   };

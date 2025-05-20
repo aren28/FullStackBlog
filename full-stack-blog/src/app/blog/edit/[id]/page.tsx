@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/useToast';
 
 const editBlog = async (
   title: string | undefined,
@@ -41,33 +42,18 @@ const deleteBlog = async (id: number | undefined) => {
 
 const PostEdit = ({ params }: { params: { id: number } }) => {
   const router = useRouter();
+  const { showSuccess, showInfo } = useToast();
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    toast.info('送信中です', {
-      position: 'top-center',
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    showInfo('投稿中です...');
 
     await editBlog(titleRef.current?.value, descriptionRef.current?.value, params.id);
 
-    toast.success('投稿完了しました', {
-      position: 'top-center',
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    showSuccess('投稿が完了しました。');
 
     router.push('/');
   };
@@ -75,25 +61,9 @@ const PostEdit = ({ params }: { params: { id: number } }) => {
   console.log('params.id', params.id);
 
   const handleDelete = async () => {
-    toast.info('削除中です', {
-      position: 'top-center',
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    showInfo('削除中です...');
     await deleteBlog(params.id);
-    toast.success('削除完了しました', {
-      position: 'top-center',
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    showSuccess('投稿が完了しました。');
     router.push('/');
   };
 
