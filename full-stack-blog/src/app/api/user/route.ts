@@ -14,30 +14,16 @@ export async function main() {
   }
 }
 
-export const GET = async (_req: Request, _res: NextResponse) => {
-  try {
-    await main();
-    const posts = await prisma.post.findMany();
-    return NextResponse.json({ message: 'Sucessです。', posts }, { status: 200 });
-  } catch (error) {
-    console.error('Error:', error);
-    return NextResponse.json({ message: 'Errorです。', error }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
-    console.log('DB切断しました。');
-  }
-};
-
-// ブログの投稿用API
+// User追加用のAPI
 export const POST = async (req: Request, _res: NextResponse) => {
   try {
-    const { title, description, userId } = await req.json();
+    const { name, email, password } = await req.json();
     await main();
-    const post = await prisma.post.create({
+    const post = await prisma.user.create({
       data: {
-        title,
-        description,
-        userId,
+        name,
+        email,
+        password,
       },
     });
     return NextResponse.json({ message: 'Sucessです。', post }, { status: 201 });
