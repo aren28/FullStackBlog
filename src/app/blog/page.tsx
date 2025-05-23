@@ -3,6 +3,9 @@ import Link from 'next/link';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { createClient } from '@/utils/supabase/server';
+import { redirect } from 'next/navigation';
+import { signOut } from './actions';
 
 async function fetchAllBlogs() {
   const res = await fetch(`http://localhost:3000/api/blog`, {
@@ -18,8 +21,19 @@ async function fetchAllBlogs() {
 }
 
 export default async function BlogMain() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   const posts = await fetchAllBlogs();
-  console.log('posts', posts);
+
+  console.log('currentUser', user);
+
+  const isAuthenticated = user !== null;
+
+  if (!isAuthenticated) {
+    redirect('/login');
+  }
 
   // 日付のフォーマット
   dayjs.extend(utc);
@@ -36,6 +50,7 @@ export default async function BlogMain() {
 
   return (
     <main className="w-full h-full">
+      {user && user.email}
       <div className="md:w-2/4 sm:w-3/4 m-auto p-4 my-5 rounded-lg bg-black drop-shadow-xl">
         <h1 className="text-slate-200 text-center text-2xl font-extrabold">Full Stack Blog 📝</h1>
       </div>
@@ -48,6 +63,14 @@ export default async function BlogMain() {
           ブログ新規作成
         </Link>
       </div>
+      <form action={signOut}>
+        <button
+          type="submit"
+          className=" md:w-1/6 sm:w-2/4 text-center rounded-md p-2 m-auto bg-slate-300 font-semibold hover:bg-slate-950 hover:text-amber-50 transition-all duration-200 ease-in-out"
+        >
+          サインアウト
+        </button>
+      </form>
 
       <div className="w-full flex flex-col justify-center items-center">
         {formattedDateList.map((post: PostType) => (

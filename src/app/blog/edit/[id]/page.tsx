@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { use, useRef } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/useToast';
@@ -40,29 +40,30 @@ const deleteBlog = async (id: number | undefined) => {
   return res.json();
 };
 
-const PostEdit = ({ params }: { params: { id: number } }) => {
+const PostEdit = ({ params }: { params: Promise<{ id: number }> }) => {
   const router = useRouter();
   const { showSuccess, showInfo } = useToast();
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
+  const unWrappedParams = use(params);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     showInfo('投稿中です...');
 
-    await editBlog(titleRef.current?.value, descriptionRef.current?.value, params.id);
+    await editBlog(titleRef.current?.value, descriptionRef.current?.value, unWrappedParams.id);
 
     showSuccess('投稿が完了しました。');
 
     router.push('/');
   };
 
-  console.log('params.id', params.id);
+  console.log('unWrappedParams.id', unWrappedParams.id);
 
   const handleDelete = async () => {
     showInfo('削除中です...');
-    await deleteBlog(params.id);
+    await deleteBlog(unWrappedParams.id);
     showSuccess('投稿が完了しました。');
     router.push('/');
   };
