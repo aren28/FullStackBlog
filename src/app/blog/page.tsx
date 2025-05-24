@@ -32,7 +32,7 @@ export default async function BlogMain() {
   const isAuthenticated = user !== null;
 
   if (!isAuthenticated) {
-    redirect('/login');
+    redirect('/register');
   }
 
   // 日付のフォーマット

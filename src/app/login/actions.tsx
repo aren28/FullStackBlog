@@ -20,7 +20,7 @@ export async function login(formData: FormData) {
   }
 
   revalidatePath('/', 'layout');
-  redirect('/blog/');
+  redirect('/blog'); // ← ここを修正
 }
 
 export async function signup(formData: FormData) {
