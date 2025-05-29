@@ -5,7 +5,10 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import { signOut } from './actions';
+import SideMenu from '../components/SideMenu';
+import MainGrid from '../components/MainGrid';
+
+import { Stack, Box } from '@mui/material';
 
 async function fetchAllBlogs() {
   const res = await fetch(`http://localhost:3000/api/blog`, {
@@ -27,7 +30,7 @@ export default async function BlogMain() {
   } = await supabase.auth.getUser();
   const posts = await fetchAllBlogs();
 
-  console.log('currentUser', user);
+  console.log({ user, typeofUser: typeof user });
 
   const isAuthenticated = user !== null;
 
@@ -50,58 +53,34 @@ export default async function BlogMain() {
 
   return (
     <main className="w-full h-full">
-      {user && user.email}
-      <div className="md:w-2/4 sm:w-3/4 m-auto p-4 my-5 rounded-lg bg-black drop-shadow-xl">
-        <h1 className="text-slate-200 text-center text-2xl font-extrabold">Full Stack Blog 📝</h1>
-      </div>
-      {/* Link */}
-      <div className="flex my-5">
-        <Link
-          href={'/blog/add'}
-          className=" md:w-1/6 sm:w-2/4 text-center rounded-md p-2 m-auto bg-slate-300 font-semibold hover:bg-slate-950 hover:text-amber-50 transition-all duration-200 ease-in-out"
+      <Box
+        sx={{
+          display: 'flex',
+          background: 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+        }}
+      >
+        <SideMenu currentUser={{ email: user?.email ?? 'No Name' }} />
+        <Box
+          component={'main'}
+          sx={{
+            background: 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+          }}
         >
-          ブログ新規作成
-        </Link>
-      </div>
-      <form action={signOut}>
-        <button
-          type="submit"
-          className=" md:w-1/6 sm:w-2/4 text-center rounded-md p-2 m-auto bg-slate-300 font-semibold hover:bg-slate-950 hover:text-amber-50 transition-all duration-200 ease-in-out"
-        >
-          サインアウト
-        </button>
-      </form>
-
-      <div className="w-full flex flex-col justify-center items-center">
-        {formattedDateList.map((post: PostType) => (
-          <div
-            key={post.id}
-            className="w-3/4 mt-2 p-4 rounded-md mx-3 my-f2 bg-slate-300 flex flex-col justify-center"
+          <Stack
+            spacing={2}
+            sx={{
+              background:
+                'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+              alignItems: 'center',
+              mx: 3,
+              pb: 5,
+              mt: { xs: 8, md: 0 },
+            }}
           >
-            <div className="flex items-center my-3">
-              <div className="mr-auto">
-                <h2 className="mr-auto font-semibold text-2xl">{post.title}</h2>
-              </div>
-              <Link
-                href={`/blog/edit/${post.id}`}
-                className="px-4 py-1 text-center text-xl bg-slate-900 rounded-md font-semibold text-slate-200"
-              >
-                編集
-              </Link>
-            </div>
-
-            <div className="mr-auto my-1">
-              <blockquote className="font-bold text-sky-500 underline decoration-sky-500">
-                {post.DateTime}
-              </blockquote>
-            </div>
-
-            <div className="mr-auto my-1">
-              <h2>{post.description}</h2>
-            </div>
-          </div>
-        ))}
-      </div>
+            <MainGrid formattedDateList={formattedDateList} />
+          </Stack>
+        </Box>
+      </Box>
     </main>
   );
 }
