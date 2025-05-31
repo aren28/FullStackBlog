@@ -1,10 +1,8 @@
 import { PostType } from '@/types';
-import Link from 'next/link';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { createClient } from '@/utils/supabase/server';
-import { redirect } from 'next/navigation';
 import SideMenu from '../components/SideMenu';
 import MainGrid from '../components/MainGrid';
 
@@ -29,14 +27,6 @@ export default async function BlogMain() {
     data: { user },
   } = await supabase.auth.getUser();
   const posts = await fetchAllBlogs();
-
-  console.log({ user, typeofUser: typeof user });
-
-  const isAuthenticated = user !== null;
-
-  if (!isAuthenticated) {
-    redirect('/register');
-  }
 
   // 日付のフォーマット
   dayjs.extend(utc);

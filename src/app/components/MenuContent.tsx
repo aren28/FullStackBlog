@@ -10,20 +10,11 @@ import Stack from '@mui/material/Stack';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
-import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 
 const mainListItems = [
   { text: 'ホーム', icon: <HomeRoundedIcon /> },
   { text: 'ブログ', icon: <AssignmentRoundedIcon /> },
   { text: 'ユーザー', icon: <PeopleRoundedIcon /> },
-];
-
-const secondaryListItems = [
-  { text: '設定', icon: <SettingsRoundedIcon /> },
-  { text: '私たちについて', icon: <InfoRoundedIcon /> },
-  { text: 'フィードバック', icon: <HelpRoundedIcon /> },
 ];
 
 export default function MenuContent() {

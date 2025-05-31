@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter, redirect } from 'next/navigation';
-import { login, signup } from './actions';
+import { login } from './actions';
 import {
   Box,
   Button,
@@ -71,7 +70,6 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [open, setOpen] = useState(false);
-  const router = useRouter(); // ← 追加
 
   const handleClickOpen = () => {
     setOpen(true);

@@ -24,7 +24,7 @@ jobs:
       - name: dependenciesのインストール 
         run: npm install
 
-      - name: lineチェック
+      - name: lintチェック
         run: npm run check
 
       - name: Build project
