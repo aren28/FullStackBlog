@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: lineチェック
-        run: npm check
+        run: npm run check
 
       - name: Build project
         run: npm run build
