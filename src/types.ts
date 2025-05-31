@@ -4,3 +4,9 @@ export type PostType = {
   description: string;
   DateTime: string;
 };
+
+export type PostBlogType = {
+  title: string;
+  description: string;
+  userProfileId: string;
+};

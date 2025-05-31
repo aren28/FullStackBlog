@@ -5,26 +5,24 @@ import { useRouter } from 'next/navigation';
 import { ToastContainer } from 'react-toastify';
 
 import { useToast } from '@/hooks/useToast';
+import { PostBlogType } from '@/types';
 
-const postBlog = async (title: string | undefined, description: string | undefined) => {
+const postBlogData = async ({ title, description, userProfileId }: PostBlogType) => {
   const res = await fetch('http://localhost:3000/api/blog', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ title, description, userId: 1 }),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title, description, userProfileId }),
   });
 
   if (!res.ok) {
     throw new Error('Failed to create blog post');
   }
-
-  return res.json();
 };
 
-const PostBlog = () => {
-  const router = useRouter();
+export default function PostBlog() {
+  const redirect = useRouter();
   const { showSuccess, showInfo } = useToast();
+
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -33,11 +31,22 @@ const PostBlog = () => {
 
     showInfo('投稿中です...');
 
-    await postBlog(titleRef.current?.value, descriptionRef.current?.value);
+    if (!titleRef.current?.value || !descriptionRef.current?.value) {
+      showInfo('タイトルと記事詳細を入力してください。');
+      return;
+    }
 
-    showSuccess('投稿が完了しました。');
-
-    router.push('/');
+    try {
+      await postBlogData({
+        title: titleRef.current.value,
+        description: descriptionRef.current.value,
+        userProfileId: process.env.DEFAULT_SUPABASE_USER_ID || '',
+      });
+      showSuccess('投稿が完了しました。');
+      redirect.push('/');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -67,6 +76,4 @@ const PostBlog = () => {
       </div>
     </>
   );
-};
-
-export default PostBlog;
+}

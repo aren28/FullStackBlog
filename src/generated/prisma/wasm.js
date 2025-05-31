@@ -118,14 +118,204 @@ exports.Prisma.PostScalarFieldEnum = {
   title: 'title',
   description: 'description',
   DateTime: 'DateTime',
-  userId: 'userId',
+  userProfileId: 'userProfileId',
 };
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.Audit_log_entriesScalarFieldEnum = {
+  instance_id: 'instance_id',
   id: 'id',
-  name: 'name',
+  payload: 'payload',
+  created_at: 'created_at',
+  ip_address: 'ip_address',
+};
+
+exports.Prisma.Flow_stateScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  auth_code: 'auth_code',
+  code_challenge_method: 'code_challenge_method',
+  code_challenge: 'code_challenge',
+  provider_type: 'provider_type',
+  provider_access_token: 'provider_access_token',
+  provider_refresh_token: 'provider_refresh_token',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  authentication_method: 'authentication_method',
+  auth_code_issued_at: 'auth_code_issued_at',
+};
+
+exports.Prisma.IdentitiesScalarFieldEnum = {
+  provider_id: 'provider_id',
+  user_id: 'user_id',
+  identity_data: 'identity_data',
+  provider: 'provider',
+  last_sign_in_at: 'last_sign_in_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
   email: 'email',
-  password: 'password',
+  id: 'id',
+};
+
+exports.Prisma.InstancesScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  raw_base_config: 'raw_base_config',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+};
+
+exports.Prisma.Mfa_amr_claimsScalarFieldEnum = {
+  session_id: 'session_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  authentication_method: 'authentication_method',
+  id: 'id',
+};
+
+exports.Prisma.Mfa_challengesScalarFieldEnum = {
+  id: 'id',
+  factor_id: 'factor_id',
+  created_at: 'created_at',
+  verified_at: 'verified_at',
+  ip_address: 'ip_address',
+  otp_code: 'otp_code',
+  web_authn_session_data: 'web_authn_session_data',
+};
+
+exports.Prisma.Mfa_factorsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  friendly_name: 'friendly_name',
+  factor_type: 'factor_type',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  secret: 'secret',
+  phone: 'phone',
+  last_challenged_at: 'last_challenged_at',
+  web_authn_credential: 'web_authn_credential',
+  web_authn_aaguid: 'web_authn_aaguid',
+};
+
+exports.Prisma.One_time_tokensScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  token_type: 'token_type',
+  token_hash: 'token_hash',
+  relates_to: 'relates_to',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+};
+
+exports.Prisma.Refresh_tokensScalarFieldEnum = {
+  instance_id: 'instance_id',
+  id: 'id',
+  token: 'token',
+  user_id: 'user_id',
+  revoked: 'revoked',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  parent: 'parent',
+  session_id: 'session_id',
+};
+
+exports.Prisma.Saml_providersScalarFieldEnum = {
+  id: 'id',
+  sso_provider_id: 'sso_provider_id',
+  entity_id: 'entity_id',
+  metadata_xml: 'metadata_xml',
+  metadata_url: 'metadata_url',
+  attribute_mapping: 'attribute_mapping',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  name_id_format: 'name_id_format',
+};
+
+exports.Prisma.Saml_relay_statesScalarFieldEnum = {
+  id: 'id',
+  sso_provider_id: 'sso_provider_id',
+  request_id: 'request_id',
+  for_email: 'for_email',
+  redirect_to: 'redirect_to',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  flow_state_id: 'flow_state_id',
+};
+
+exports.Prisma.Schema_migrationsScalarFieldEnum = {
+  version: 'version',
+};
+
+exports.Prisma.SessionsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  factor_id: 'factor_id',
+  aal: 'aal',
+  not_after: 'not_after',
+  refreshed_at: 'refreshed_at',
+  user_agent: 'user_agent',
+  ip: 'ip',
+  tag: 'tag',
+};
+
+exports.Prisma.Sso_domainsScalarFieldEnum = {
+  id: 'id',
+  sso_provider_id: 'sso_provider_id',
+  domain: 'domain',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+};
+
+exports.Prisma.Sso_providersScalarFieldEnum = {
+  id: 'id',
+  resource_id: 'resource_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+};
+
+exports.Prisma.UsersScalarFieldEnum = {
+  instance_id: 'instance_id',
+  id: 'id',
+  aud: 'aud',
+  role: 'role',
+  email: 'email',
+  encrypted_password: 'encrypted_password',
+  email_confirmed_at: 'email_confirmed_at',
+  invited_at: 'invited_at',
+  confirmation_token: 'confirmation_token',
+  confirmation_sent_at: 'confirmation_sent_at',
+  recovery_token: 'recovery_token',
+  recovery_sent_at: 'recovery_sent_at',
+  email_change_token_new: 'email_change_token_new',
+  email_change: 'email_change',
+  email_change_sent_at: 'email_change_sent_at',
+  last_sign_in_at: 'last_sign_in_at',
+  raw_app_meta_data: 'raw_app_meta_data',
+  raw_user_meta_data: 'raw_user_meta_data',
+  is_super_admin: 'is_super_admin',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  phone: 'phone',
+  phone_confirmed_at: 'phone_confirmed_at',
+  phone_change: 'phone_change',
+  phone_change_token: 'phone_change_token',
+  phone_change_sent_at: 'phone_change_sent_at',
+  confirmed_at: 'confirmed_at',
+  email_change_token_current: 'email_change_token_current',
+  email_change_confirm_status: 'email_change_confirm_status',
+  banned_until: 'banned_until',
+  reauthentication_token: 'reauthentication_token',
+  reauthentication_sent_at: 'reauthentication_sent_at',
+  is_sso_user: 'is_sso_user',
+  deleted_at: 'deleted_at',
+  is_anonymous: 'is_anonymous',
+};
+
+exports.Prisma.ProfilesScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
 };
 
 exports.Prisma.SortOrder = {
@@ -133,14 +323,80 @@ exports.Prisma.SortOrder = {
   desc: 'desc',
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull,
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive',
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last',
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull,
+};
+exports.code_challenge_method = exports.$Enums.code_challenge_method = {
+  s256: 's256',
+  plain: 'plain',
+};
+
+exports.factor_type = exports.$Enums.factor_type = {
+  totp: 'totp',
+  webauthn: 'webauthn',
+  phone: 'phone',
+};
+
+exports.factor_status = exports.$Enums.factor_status = {
+  unverified: 'unverified',
+  verified: 'verified',
+};
+
+exports.one_time_token_type = exports.$Enums.one_time_token_type = {
+  confirmation_token: 'confirmation_token',
+  reauthentication_token: 'reauthentication_token',
+  recovery_token: 'recovery_token',
+  email_change_token_new: 'email_change_token_new',
+  email_change_token_current: 'email_change_token_current',
+  phone_change_token: 'phone_change_token',
+};
+
+exports.aal_level = exports.$Enums.aal_level = {
+  aal1: 'aal1',
+  aal2: 'aal2',
+  aal3: 'aal3',
+};
+
 exports.Prisma.ModelName = {
   Post: 'Post',
-  User: 'User',
+  audit_log_entries: 'audit_log_entries',
+  flow_state: 'flow_state',
+  identities: 'identities',
+  instances: 'instances',
+  mfa_amr_claims: 'mfa_amr_claims',
+  mfa_challenges: 'mfa_challenges',
+  mfa_factors: 'mfa_factors',
+  one_time_tokens: 'one_time_tokens',
+  refresh_tokens: 'refresh_tokens',
+  saml_providers: 'saml_providers',
+  saml_relay_states: 'saml_relay_states',
+  schema_migrations: 'schema_migrations',
+  sessions: 'sessions',
+  sso_domains: 'sso_domains',
+  sso_providers: 'sso_providers',
+  users: 'users',
+  Profiles: 'Profiles',
 };
 
 /**

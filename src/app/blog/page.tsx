@@ -2,11 +2,11 @@ import { PostType } from '@/types';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
-import { createClient } from '@/utils/supabase/server';
 import SideMenu from '../components/SideMenu';
 import MainGrid from '../components/MainGrid';
 
 import { Stack, Box } from '@mui/material';
+import { createClient } from '@/utils/supabase/server';
 
 async function fetchAllBlogs() {
   const res = await fetch(`http://localhost:3000/api/blog`, {
@@ -26,6 +26,11 @@ export default async function BlogMain() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  if (!user) {
+    return null;
+  }
+
   const posts = await fetchAllBlogs();
 
   // 日付のフォーマット
@@ -49,7 +54,7 @@ export default async function BlogMain() {
           background: 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
         }}
       >
-        <SideMenu currentUser={{ email: user?.email ?? 'No Name' }} />
+        <SideMenu currentUser={{ email: user?.email }} />
         <Box
           component={'main'}
           sx={{

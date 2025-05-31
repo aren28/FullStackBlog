@@ -37,7 +37,7 @@ export const POST = async (req: Request, _res: NextResponse) => {
       data: {
         title,
         description,
-        userId,
+        userProfileId: userId,
       },
     });
     return NextResponse.json({ message: 'Sucessです。', post }, { status: 201 });

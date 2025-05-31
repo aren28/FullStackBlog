@@ -28,7 +28,7 @@ const Drawer = styled(MuiDrawer)({
 
 interface SideMenuProps {
   currentUser: {
-    email: string;
+    email?: string;
   };
 }
 
