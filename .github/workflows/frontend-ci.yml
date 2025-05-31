@@ -1,0 +1,31 @@
+name: Frontend CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: コードをチェックアウト
+        uses: actions/checkout@v2
+
+      - name: Node.jsをセットアップ
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'
+
+      - name: dependenciesのインストール 
+        run: npm install
+
+      - name: lineチェック
+        run: npm check
+
+      - name: Build project
+        run: npm run build
