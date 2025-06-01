@@ -21,7 +21,6 @@ import MuiCard from '@mui/material/Card';
 import ForgotPassword from '@/app/components/ForgotPassword';
 import { GoogleIcon } from '@/app/components/SocialIcons';
 import AppTheme from '@/app/shard-theme/AppTheme';
-import ColorModeSelect from '@/app/shard-theme/ColorModeSelect';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -36,10 +35,6 @@ const Card = styled(MuiCard)(({ theme }) => ({
   },
   boxShadow:
     'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
-  ...theme.applyStyles('dark', {
-    boxShadow:
-      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
-  }),
 }));
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
@@ -56,11 +51,8 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     position: 'absolute',
     zIndex: -1,
     inset: 0,
-    backgroundImage: 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
-    backgroundRepeat: 'no-repeat',
-    ...theme.applyStyles('dark', {
-      backgroundImage: 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
-    }),
+    backgroundImage: 'url(img/login_bg.png)',
+    backgroundRepeat: 'round',
   },
 }));
 
@@ -111,13 +103,11 @@ const Register = () => {
     console.log('handleSubmit', emailError, passwordError);
 
     if (emailError || passwordError) {
-      event.preventDefault();
       console.log('入力エラーがあります。');
       return;
     }
 
     if (!valid) {
-      event.preventDefault();
       console.log('入力が無効です。');
       return;
     }
@@ -139,7 +129,6 @@ const Register = () => {
     <AppTheme>
       <CssBaseline />
       <SignInContainer>
-        <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
         <Card variant="outlined">
           <Typography
             component="h1"
@@ -161,7 +150,9 @@ const Register = () => {
             }}
           >
             <FormControl>
-              <FormLabel htmlFor="email">Eメールアドレス</FormLabel>
+              <FormLabel htmlFor="email" sx={{ color: 'white' }}>
+                Eメールアドレス
+              </FormLabel>
               <TextField
                 error={emailError}
                 helperText={emailErrorMessage}
@@ -174,10 +165,22 @@ const Register = () => {
                 fullWidth
                 variant="outlined"
                 color={emailError ? 'error' : 'primary'}
+                slotProps={{
+                  input: {
+                    sx: {
+                      backgroundColor: 'white',
+                      '&::placeholder': {
+                        color: 'gray',
+                      },
+                    },
+                  },
+                }}
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">パスワード</FormLabel>
+              <FormLabel htmlFor="password" sx={{ color: 'white' }}>
+                パスワード
+              </FormLabel>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
@@ -190,6 +193,16 @@ const Register = () => {
                 fullWidth
                 variant="outlined"
                 color={passwordError ? 'error' : 'primary'}
+                slotProps={{
+                  input: {
+                    sx: {
+                      backgroundColor: 'white',
+                      '&::placeholder': {
+                        color: 'gray',
+                      },
+                    },
+                  },
+                }}
               />
             </FormControl>
             <FormControlLabel

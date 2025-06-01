@@ -55,8 +55,10 @@ export const navigationCustomizations: Components<Theme> = {
       }),
     },
   },
+
   MuiSelect: {
     defaultProps: {
+      // eslint-disable-next-line react/display-name
       IconComponent: React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
         <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />
       )),
