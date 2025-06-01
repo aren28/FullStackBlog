@@ -7,54 +7,27 @@ async function main() {
   console.log('DB接続成功しました。');
 
   const deletePosts = await prisma.post.deleteMany({});
-  const deleteUsers = await prisma.user.deleteMany({});
 
   console.log('DBのデータを削除しました。');
-  console.log('削除したデータ:', deleteUsers, deletePosts);
   // DBのデータを削除した後に、データを追加する
 
-  const user = await prisma.user.createMany({
-    data: [
-      {
-        id: 1,
-        name: 'testUser1',
-        email: 'test1234@test.jp',
-        password: 'testPassword',
-      },
-      {
-        id: 2,
-        name: 'testUser2',
-        email: 'test2345@test.jp',
-        password: 'testPassword1',
-      },
-      {
-        id: 3,
-        name: 'testUser3',
-        email: 'test4567@test.com',
-        password: 'testPassword2',
-      },
-    ],
-    skipDuplicates: true,
-  });
-
-  console.log('User created:', user);
 
   const blog = await prisma.post.createMany({
     data: [
       {
         title: 'testBlog1',
         description: 'testBlog1Description',
-        userId: 1,
+        userProfileId: process.env.DEFAULT_SUPABASE_USER_ID,
       },
       {
         title: 'testBlog2',
         description: 'testBlog2Description',
-        userId: 2,
+        userProfileId: process.env.DEFAULT_SUPABASE_USER_ID,
       },
       {
         title: 'testBlog3',
         description: 'testBlog3Description',
-        userId: 3,
+        userProfileId: process.env.DEFAULT_SUPABASE_USER_ID,
       },
     ],
     skipDuplicates: true,

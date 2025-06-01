@@ -3,7 +3,6 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import NavbarBreadcrumbs from './NavbarBreadcrumbs';
-import ColorModeSelect from '@/app/shard-theme/ColorModeSelect';
 
 export default function Header() {
   return (
@@ -21,7 +20,6 @@ export default function Header() {
     >
       <NavbarBreadcrumbs />
       <Stack direction="row" sx={{ gap: 1 }}>
-        <ColorModeSelect />
       </Stack>
     </Stack>
   );

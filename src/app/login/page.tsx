@@ -235,7 +235,7 @@ const Register = () => {
             </Button>
             <Typography sx={{ textAlign: 'center' }}>
               アカウント登録しますか？{' '}
-              <Link href="/signup" variant="body2" sx={{ alignSelf: 'center' }}>
+              <Link href="#" variant="body2" sx={{ alignSelf: 'center' }}>
                 無料登録
               </Link>
             </Typography>

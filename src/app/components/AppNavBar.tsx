@@ -11,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import MenuButton from './MenuButton';
-import ColorModeSelect from '@/app/shard-theme/ColorModeSelect';
 
 const Toolbar = styled(MuiToolbar)({
   width: '100%',
@@ -59,7 +58,6 @@ export default function AppNavbar() {
               Dashboard
             </Typography>
           </Stack>
-          <ColorModeSelect />
           <MenuButton aria-label="menu">
             <MenuRoundedIcon />
           </MenuButton>
