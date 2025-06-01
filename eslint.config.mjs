@@ -12,7 +12,7 @@ const ignoredFolders = globalIgnores([
   './.next/*',
   './prisma/*',
   './node_modules/*',
-  './src/generated/prisma/*',
+  'src/generated/*',
 ]);
 
 const compat = new FlatCompat({
@@ -32,8 +32,8 @@ const eslintConfig = [
           caughtErrorsIgnorePattern: '^_',
         },
       ],
-      ...eslintConfigPrettier.rules, // ← Prettier の競合ルールをオフにする
-      'prettier/prettier': 'warn', // ← Prettier のルール違反を警告（任意）
+      ...eslintConfigPrettier.rules, //
+      'prettier/prettier': 'warn', //
     },
     plugins: {
       prettier: eslintPluginPrettier,

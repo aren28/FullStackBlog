@@ -6,7 +6,7 @@ import { dataDisplayCustomizations } from '@/app/shard-theme/customizations/data
 import { feedbackCustomizations } from '@/app/shard-theme/customizations/feedback';
 import { navigationCustomizations } from '@/app/shard-theme/customizations/navigation';
 import { surfacesCustomizations } from '@/app/shard-theme/customizations/surfaces';
-import { colorSchemes, typography, shadows, shape } from '@/app/shard-theme/themePrimitives';
+import { colorSchemes, typography, shape } from '@/app/shard-theme/themePrimitives';
 
 interface AppThemeProps {
   children: React.ReactNode;
@@ -30,7 +30,6 @@ export default function AppTheme(props: AppThemeProps) {
           },
           colorSchemes, // Recently added in v6 for building light & dark mode app, see https://mui.com/material-ui/customization/palette/#color-schemes
           typography,
-          shadows,
           shape,
           components: {
             ...inputsCustomizations,
