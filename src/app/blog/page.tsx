@@ -47,35 +47,28 @@ export default async function BlogMain() {
   });
 
   return (
-    <main className="w-full h-full">
-      <Box
-        sx={{
-          display: 'flex',
-          background: 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
-        }}
-      >
-        <SideMenu currentUser={{ email: user?.email }} />
-        <Box
-          component={'main'}
+    <Box
+      sx={{
+        display: 'flex',
+        background: 'transparent',
+        width: '100%',
+      }}
+    >
+      <SideMenu currentUser={{ email: user?.email }} />
+      <Box component={'main'} sx={{ width: '100vw' }}>
+        <Stack
+          spacing={2}
           sx={{
-            background: 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+            alignItems: 'center',
+            mx: 'auto',
+            pb: 5,
+            mt: { xs: 8, md: 0 },
+            width: '100%',
           }}
         >
-          <Stack
-            spacing={2}
-            sx={{
-              background:
-                'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
-              alignItems: 'center',
-              mx: 3,
-              pb: 5,
-              mt: { xs: 8, md: 0 },
-            }}
-          >
-            <MainGrid formattedDateList={formattedDateList} />
-          </Stack>
-        </Box>
+          <MainGrid formattedDateList={formattedDateList} />
+        </Stack>
       </Box>
-    </main>
+    </Box>
   );
 }

@@ -11,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
+import Link from 'next/link';
 import { PostType } from '@/types';
 
 const MainContainer = styled(Box)(({ theme }) => ({
@@ -24,39 +25,44 @@ const MainContainer = styled(Box)(({ theme }) => ({
     position: 'absolute',
     zIndex: -1,
     inset: 0,
-    backgroundImage: 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
-    backgroundRepeat: 'no-repeat',
+    background: 'linear-gradient(90deg, #40826D 0%, #98FBCB 100%)',
   },
 }));
 
 export default function MainGrid({ formattedDateList }: { formattedDateList: PostType[] }) {
   return (
-    <MainContainer sx={{ width: '100%', height: '100vh', maxWidth: { sm: '100%', md: '1700px' } }}>
+    <MainContainer sx={{ width: '100%', height: '100%', maxWidth: { sm: '100%', md: '100%' } }}>
       {/* cards */}
-      <TableContainer component={Paper} sx={{ color: 'white', background: 'transparent' }}>
+      <TableContainer component={Paper} sx={{ color: 'white', background: 'white' }}>
         <Table sx={{ minWidth: '1000px', background: 'transparent' }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell sx={{ color: 'white' }}>タイトル</TableCell>
-              <TableCell sx={{ color: 'white' }} align="right">
+              <TableCell sx={{ color: 'black' }}>タイトル</TableCell>
+              <TableCell sx={{ color: 'black' }} align="right">
                 内容
               </TableCell>
-              <TableCell sx={{ color: 'white' }} align="right">
+              <TableCell sx={{ color: 'black' }} align="right">
                 作成日時
+              </TableCell>
+              <TableCell sx={{ color: 'black' }} align="right">
+                操作
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {formattedDateList.map((blog: PostType) => (
               <TableRow key={blog.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row" sx={{ color: 'white' }}>
+                <TableCell component="th" scope="row" sx={{ color: 'black' }}>
                   {blog.title}
                 </TableCell>
-                <TableCell align="right" sx={{ color: 'white' }}>
+                <TableCell align="right" sx={{ color: 'black' }}>
                   {blog.description}
                 </TableCell>
-                <TableCell align="right" sx={{ color: 'white' }}>
+                <TableCell align="right" sx={{ color: 'black' }}>
                   {blog.DateTime}
+                </TableCell>
+                <TableCell align="right" sx={{ color: 'black' }}>
+                  <Link href={`/blog/edit/${blog.id}`}>編集</Link>
                 </TableCell>
               </TableRow>
             ))}

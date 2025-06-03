@@ -56,7 +56,7 @@ const PostEdit = ({ params }: { params: Promise<{ id: number }> }) => {
 
     showSuccess('投稿が完了しました。');
 
-    router.push('/');
+    router.push('/blog');
   };
 
   console.log('unWrappedParams.id', unWrappedParams.id);
@@ -65,7 +65,7 @@ const PostEdit = ({ params }: { params: Promise<{ id: number }> }) => {
     showInfo('削除中です...');
     await deleteBlog(unWrappedParams.id);
     showSuccess('投稿が完了しました。');
-    router.push('/');
+    router.push('/blog');
   };
 
   return (
