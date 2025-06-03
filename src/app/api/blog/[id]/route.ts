@@ -14,7 +14,7 @@ async function main() {
 }
 
 // singlePostの取得
-export const GET = async (req: Request, { params }: { params: Promise<{ id: string }> }) => {
+export const GET = async (req: Request, { params: _ }: { params: Promise<{ id: string }> }) => {
   try {
     await main();
     const posts = await prisma.post.findFirst({
@@ -31,7 +31,10 @@ export const GET = async (req: Request, { params }: { params: Promise<{ id: stri
 };
 
 // ブログの編集API
-export const PUT = async (req: Request, { params }: { params: Promise<{ idCurrent: string }> }) => {
+export const PUT = async (
+  req: Request,
+  { params: _ }: { params: Promise<{ idCurrent: string }> },
+) => {
   try {
     const id: number = parseInt(req.url.split('/blog/')[1]);
     const { title, description } = await req.json();
@@ -53,7 +56,7 @@ export const PUT = async (req: Request, { params }: { params: Promise<{ idCurren
 // ブログの削除API
 export const DELETE = async (
   req: Request,
-  { params }: { params: Promise<{ idCurrent: string }> },
+  { params: _ }: { params: Promise<{ idCurrent: string }> },
 ) => {
   try {
     const id: number = parseInt(req.url.split('/blog/')[1]);

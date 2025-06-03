@@ -13,7 +13,7 @@ async function main() {
   }
 }
 
-export const GET = async (_req: Request, { params }: { params: Promise<{ id: string }> }) => {
+export const GET = async (_req: Request, { params: _ }: { params: Promise<{ id: string }> }) => {
   try {
     await main();
     const posts = await prisma.post.findMany();
@@ -28,7 +28,7 @@ export const GET = async (_req: Request, { params }: { params: Promise<{ id: str
 };
 
 // ブログの投稿用API
-export const POST = async (req: Request, { params }: { params: Promise<{ id: string }> }) => {
+export const POST = async (req: Request, { params: _ }: { params: Promise<{ id: string }> }) => {
   try {
     const { title, description, userId } = await req.json();
     await main();
