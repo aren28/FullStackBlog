@@ -1,5 +1,5 @@
 import { PrismaClient } from '@/generated/prisma';
-import { NextResponse} from 'next/server';
+import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
@@ -14,14 +14,13 @@ async function main() {
 }
 
 // singlePostの取得
-export const GET = async (req: Request,  { params }: { params: Promise<{ id: string }> }) => {
+export const GET = async (req: Request, { params }: { params: Promise<{ id: string }> }) => {
   try {
     await main();
-    const { id } = await params
     const posts = await prisma.post.findFirst({
       where: { id: parseInt(req.url.split('/blog/')[1]) },
     });
-    return NextResponse.json({ message: `Sucessです。${id}`, posts }, { status: 200 });
+    return NextResponse.json({ message: `Sucessです。`, posts }, { status: 200 });
   } catch (error) {
     console.error('Error:', error);
     return NextResponse.json({ message: 'Errorです。', error }, { status: 500 });
@@ -32,8 +31,8 @@ export const GET = async (req: Request,  { params }: { params: Promise<{ id: str
 };
 
 // ブログの編集API
-export const PUT = async (req: Request, { params }: { params: Promise<{ idCurrent: string }>} ) => {
-    try {
+export const PUT = async (req: Request, { params }: { params: Promise<{ idCurrent: string }> }) => {
+  try {
     const id: number = parseInt(req.url.split('/blog/')[1]);
     const { title, description } = await req.json();
     await main();
@@ -52,10 +51,12 @@ export const PUT = async (req: Request, { params }: { params: Promise<{ idCurren
 };
 
 // ブログの削除API
-export const DELETE = async (req: Request, { params }: { params: Promise<{ idCurrent: string }>} ) => {
+export const DELETE = async (
+  req: Request,
+  { params }: { params: Promise<{ idCurrent: string }> },
+) => {
   try {
     const id: number = parseInt(req.url.split('/blog/')[1]);
-
     await main();
     const post = await prisma.post.delete({
       where: { id },

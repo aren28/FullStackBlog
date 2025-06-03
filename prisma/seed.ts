@@ -11,7 +11,6 @@ async function main() {
   console.log('DBのデータを削除しました。');
   // DBのデータを削除した後に、データを追加する
 
-
   const blog = await prisma.post.createMany({
     data: [
       {

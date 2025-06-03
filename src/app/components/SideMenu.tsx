@@ -5,10 +5,8 @@ import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import MuiDrawer, { drawerClasses } from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import SelectContent from './SelectContent';
 import MenuContent from './MenuContent';
 import OptionsMenu from './OptionsMenu';
 
@@ -37,27 +35,20 @@ export default function SideMenu(props: SideMenuProps) {
     <Drawer
       variant="permanent"
       sx={{
-        display: { xs: 'none', md: 'block' },
-        backgroundImage:
-          'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+        display: {
+          xs: 'none',
+          md: 'block',
+        },
+        p: 0,
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          mt: 'calc(var(--template-frame-height, 0px) + 4px)',
-          p: 1.5,
-        }}
-      >
-        <SelectContent />
-      </Box>
-      <Divider />
       <Box
         sx={{
           overflow: 'auto',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
+          backgroundColor: 'linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%);',
         }}
       >
         <MenuContent />
@@ -70,6 +61,7 @@ export default function SideMenu(props: SideMenuProps) {
           alignItems: 'center',
           borderTop: '1px solid',
           borderColor: 'divider',
+          backgroundColor: 'linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%);',
         }}
       >
         <Avatar
@@ -78,8 +70,13 @@ export default function SideMenu(props: SideMenuProps) {
           src="/static/images/avatar/7.jpg"
           sx={{ width: 36, height: 36 }}
         />
-        <Box sx={{ mr: 'auto' }}>
-          <Typography variant="body2" sx={{ fontWeight: 500, lineHeight: '16px', width: '100%' }}>
+        <Box sx={{ mr: 'auto', textWrap: 'wrap' }}>
+          <Typography
+            variant="body2"
+            overflow={'hidden'}
+            textOverflow={'ellipsis'}
+            sx={{ fontWeight: 500, lineHeight: '16px', width: '135px', textWrap: 'wrap' }}
+          >
             {props.currentUser?.email || '未確認ユーザー'}
           </Typography>
         </Box>

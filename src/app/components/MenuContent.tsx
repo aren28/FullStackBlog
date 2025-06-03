@@ -24,8 +24,6 @@ export default function MenuContent() {
         flexGrow: 1,
         p: 1,
         justifyContent: 'space-between',
-        backgroundColor:
-          'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
       }}
     >
       <List dense>
@@ -38,18 +36,6 @@ export default function MenuContent() {
           </ListItem>
         ))}
       </List>
-
-      {/* サブのリストアイテムはコメントアウトされていますが、必要に応じて有効化できます。 */}
-      {/* <List dense>
-        {secondaryListItems.map((item, index) => (
-          <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-            <ListItemButton>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List> */}
     </Stack>
   );
 }

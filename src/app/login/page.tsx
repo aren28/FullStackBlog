@@ -169,6 +169,7 @@ const Register = () => {
                   input: {
                     sx: {
                       backgroundColor: 'white',
+                      color: 'black',
                       '&::placeholder': {
                         color: 'gray',
                       },
@@ -197,6 +198,7 @@ const Register = () => {
                   input: {
                     sx: {
                       backgroundColor: 'white',
+                      color: 'black',
                       '&::placeholder': {
                         color: 'gray',
                       },
