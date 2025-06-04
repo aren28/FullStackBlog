@@ -7,14 +7,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import AddIcon from '@mui/icons-material/Add';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
+import Link from 'next/link';
 
 const mainListItems = [
-  { text: 'ホーム', icon: <HomeRoundedIcon /> },
-  { text: 'ブログ', icon: <AssignmentRoundedIcon /> },
-  { text: 'ユーザー', icon: <PeopleRoundedIcon /> },
+  { text: 'ブログ一覧', icon: <AssignmentRoundedIcon />, href: '/blog' },
+  { text: 'ブログ追加', icon: <AddIcon />, href: '/blog/add' },
 ];
 
 export default function MenuContent() {
@@ -28,12 +27,14 @@ export default function MenuContent() {
     >
       <List dense>
         {mainListItems.map((item, index) => (
-          <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-            <ListItemButton selected={index === 0}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
+          <Link key={index} href={item.href || '#'}>
+            <ListItem disablePadding sx={{ display: 'block' }}>
+              <ListItemButton selected={index === 0}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
     </Stack>

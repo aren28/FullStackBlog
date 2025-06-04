@@ -4,6 +4,7 @@ import React, { use, useRef } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/useToast';
+import { Box, Typography, TextField, Button, Paper, Stack } from '@mui/material';
 
 const editBlog = async (
   title: string | undefined,
@@ -59,8 +60,6 @@ const PostEdit = ({ params }: { params: Promise<{ id: number }> }) => {
     router.push('/blog');
   };
 
-  console.log('unWrappedParams.id', unWrappedParams.id);
-
   const handleDelete = async () => {
     showInfo('削除中です...');
     await deleteBlog(unWrappedParams.id);
@@ -70,38 +69,69 @@ const PostEdit = ({ params }: { params: Promise<{ id: number }> }) => {
 
   return (
     <>
-      <div className="w-full m-auto flex my-4">
-        <ToastContainer />
-        <div className="flex flex-col justify-center items-center m-auto">
-          <p className="text-2xl text-slate-200 font-bold p-3">ブログの編集 🚀</p>
+      <ToastContainer />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        m="auto"
+        height="100vh"
+      >
+        <Typography variant="h5" color="primary.contrastText" fontWeight="bold" p={3}>
+          ブログの編集
+        </Typography>
+        <Paper elevation={3} sx={{ p: 3, width: '100%', maxWidth: 500 }}>
           <form onSubmit={handleSubmit}>
-            <input
-              ref={titleRef}
+            <TextField
+              inputRef={titleRef}
               placeholder="タイトルを入力"
               type="text"
-              className="rounded-md px-4 w-full py-2 my-2"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              sx={{ backgroundColor: 'white' }}
             />
-            <textarea
-              ref={descriptionRef}
+            <TextField
+              inputRef={descriptionRef}
               placeholder="記事詳細を入力"
-              className="rounded-md px-4 py-2 w-full my-2"
-            ></textarea>
-            <button
-              type="submit"
-              className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100"
-            >
-              更新
-            </button>
-            <button
-              type="button"
-              onClick={handleDelete}
-              className="ml-2 font-semibold px-4 py-2 shadow-xl bg-red-400 rounded-lg m-auto hover:bg-slate-100"
-            >
-              削除
-            </button>
+              multiline
+              rows={4}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              sx={{ backgroundColor: 'white' }}
+            />
+            <Stack direction="row" spacing={2} justifyContent="center" mt={2}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  fontWeight: 'bold',
+                  boxShadow: 3,
+                  borderRadius: 2,
+                }}
+              >
+                更新
+              </Button>
+              <Button
+                type="button"
+                onClick={handleDelete}
+                variant="contained"
+                color="error"
+                sx={{
+                  fontWeight: 'bold',
+                  boxShadow: 3,
+                  borderRadius: 2,
+                }}
+              >
+                削除
+              </Button>
+            </Stack>
           </form>
-        </div>
-      </div>
+        </Paper>
+      </Box>
     </>
   );
 };

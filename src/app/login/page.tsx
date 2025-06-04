@@ -96,6 +96,7 @@ const Register = () => {
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     const valid = validateInputs(data.get('email') as string, data.get('password') as string);

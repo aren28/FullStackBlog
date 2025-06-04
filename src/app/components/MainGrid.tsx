@@ -25,7 +25,6 @@ const MainContainer = styled(Box)(({ theme }) => ({
     position: 'absolute',
     zIndex: -1,
     inset: 0,
-    background: 'linear-gradient(90deg, #40826D 0%, #98FBCB 100%)',
   },
 }));
 

@@ -54,8 +54,7 @@ export default async function BlogMain() {
         width: '100%',
       }}
     >
-      <SideMenu currentUser={{ email: user?.email }} />
-      <Box component={'main'} sx={{ width: '100vw' }}>
+      <Box component={'main'} sx={{ width: '100%' }}>
         <Stack
           spacing={2}
           sx={{

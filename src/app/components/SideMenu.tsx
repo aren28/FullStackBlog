@@ -24,13 +24,7 @@ const Drawer = styled(MuiDrawer)({
   },
 });
 
-interface SideMenuProps {
-  currentUser: {
-    email?: string;
-  };
-}
-
-export default function SideMenu(props: SideMenuProps) {
+export default function SideMenu() {
   return (
     <Drawer
       variant="permanent"
@@ -77,7 +71,7 @@ export default function SideMenu(props: SideMenuProps) {
             textOverflow={'ellipsis'}
             sx={{ fontWeight: 500, lineHeight: '16px', width: '135px', textWrap: 'wrap' }}
           >
-            {props.currentUser?.email || '未確認ユーザー'}
+            {'未確認ユーザー'}
           </Typography>
         </Box>
         <OptionsMenu />

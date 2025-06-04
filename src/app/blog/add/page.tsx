@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { ToastContainer } from 'react-toastify';
-
+import { Box, Typography, TextField, Button, Paper } from '@mui/material';
 import { useToast } from '@/hooks/useToast';
 import { PostBlogType } from '@/types';
 
@@ -51,29 +51,59 @@ export default function PostBlog() {
 
   return (
     <>
-      <div className="w-full m-auto flex my-4">
-        <ToastContainer />
-        <div className="flex flex-col justify-center items-center m-auto">
-          <p className="text-2xl text-slate-200 font-bold p-3">ブログ新規作成 🚀</p>
+      <ToastContainer />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        m="auto"
+        height={'100vh'}
+      >
+        <Typography variant="h5" color="primary.contrastText" fontWeight="bold" p={3}>
+          ブログ新規作成
+        </Typography>
+        <Paper elevation={3} sx={{ p: 3, width: '100%', maxWidth: 500 }}>
           <form onSubmit={handleSubmit}>
-            <input
-              ref={titleRef}
+            <TextField
+              inputRef={titleRef}
               placeholder="タイトルを入力"
               type="text"
-              className="rounded-md px-4 w-full py-2 my-2 border-2 border-slate-200"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              sx={{ backgroundColor: 'white' }}
             />
-            <textarea
-              ref={descriptionRef}
+            <TextField
+              inputRef={descriptionRef}
               placeholder="記事詳細を入力"
+              multiline
               rows={4}
-              className="rounded-md px-4 py-2 w-full my-2 border-2 border-slate-200"
-            ></textarea>
-            <button className="cursor-pointer font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100">
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              sx={{ backgroundColor: 'white' }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              sx={{
+                backgroundColor: 'white',
+                color: 'black',
+                fontWeight: 'bold',
+                mt: 2,
+                mx: 'auto',
+                display: 'block',
+                boxShadow: 3,
+                borderRadius: 2,
+              }}
+            >
               投稿
-            </button>
+            </Button>
           </form>
-        </div>
-      </div>
+        </Paper>
+      </Box>
     </>
   );
 }
