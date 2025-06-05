@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
 import Link from 'next/link';
-import { PostType } from '@/types';
+import { PostItem } from '@/types';
 
 const MainContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -28,7 +28,7 @@ const MainContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export default function MainGrid({ formattedDateList }: { formattedDateList: PostType[] }) {
+export default function MainGrid({ formattedDateList }: { formattedDateList: PostItem[] }) {
   return (
     <MainContainer sx={{ width: '100%', height: '100%', maxWidth: { sm: '100%', md: '100%' } }}>
       {/* cards */}
@@ -49,7 +49,7 @@ export default function MainGrid({ formattedDateList }: { formattedDateList: Pos
             </TableRow>
           </TableHead>
           <TableBody>
-            {formattedDateList.map((blog: PostType) => (
+            {formattedDateList.map((blog: PostItem) => (
               <TableRow key={blog.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row" sx={{ color: 'black' }}>
                   {blog.title}

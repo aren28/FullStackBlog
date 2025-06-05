@@ -12,3 +12,6 @@ https://supabase.com/dashboard/sign-in
 https://console.prisma.io/login
 
 ・node.js v22以上のインストール（npm 10.5.1以上）
+
+[2025/06/05]
+Redux導入
