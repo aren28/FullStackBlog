@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import type { ThemeOptions } from '@mui/material/styles';
-import { inputsCustomizations } from '@/app/shard-theme/customizations/inputs';
-import { dataDisplayCustomizations } from '@/app/shard-theme/customizations/dataDisplay';
-import { feedbackCustomizations } from '@/app/shard-theme/customizations/feedback';
-import { navigationCustomizations } from '@/app/shard-theme/customizations/navigation';
-import { surfacesCustomizations } from '@/app/shard-theme/customizations/surfaces';
-import { colorSchemes, typography, shape } from '@/app/shard-theme/themePrimitives';
+import { inputsCustomizations } from '@/shard-theme/customizations/inputs';
+import { dataDisplayCustomizations } from '@/shard-theme/customizations/dataDisplay';
+import { feedbackCustomizations } from '@/shard-theme/customizations/feedback';
+import { navigationCustomizations } from '@/shard-theme/customizations/navigation';
+import { surfacesCustomizations } from '@/shard-theme/customizations/surfaces';
+import { colorSchemes, typography, shape } from '@/shard-theme/themePrimitives';
 
 interface AppThemeProps {
   children: React.ReactNode;

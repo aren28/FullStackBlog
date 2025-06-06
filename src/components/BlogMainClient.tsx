@@ -9,7 +9,7 @@ import timezone from 'dayjs/plugin/timezone';
 import { Stack, Box } from '@mui/material';
 import { PostItem } from '@/types';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { setUser } from '@/app/store/slices/userSlices';
+import { setUser } from '@/store/slices/userSlices';
 import { useRouter } from 'next/navigation';
 
 dayjs.extend(utc);

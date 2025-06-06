@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/server';
-import BlogMainClient from '@/app/components/BlogMainClient';
+import BlogMainClient from '@/components/BlogMainClient';
 
 export default async function BlogMain() {
   const supabase = await createClient();

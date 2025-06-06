@@ -1,4 +1,4 @@
-import SideMenu from '../components/SideMenu';
+import SideMenu from '@/components/SideMenu';
 import { ReactNode } from 'react';
 import Box from '@mui/material/Box';
 

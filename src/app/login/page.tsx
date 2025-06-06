@@ -18,9 +18,9 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import MuiCard from '@mui/material/Card';
-import ForgotPassword from '@/app/components/ForgotPassword';
-import { GoogleIcon } from '@/app/components/SocialIcons';
-import AppTheme from '@/app/shard-theme/AppTheme';
+import ForgotPassword from '@/components/ForgotPassword';
+import { GoogleIcon } from '@/components/SocialIcons';
+import AppTheme from '@/shard-theme/AppTheme';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',

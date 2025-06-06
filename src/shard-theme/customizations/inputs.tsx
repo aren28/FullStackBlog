@@ -7,7 +7,7 @@ import { toggleButtonClasses } from '@mui/material/ToggleButton';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
-import { gray, brand } from '@/app/shard-theme/themePrimitives';
+import { gray, brand } from '@/shard-theme/themePrimitives';
 
 export const inputsCustomizations: Components<Theme> = {
   MuiButtonBase: {

@@ -12,7 +12,7 @@ import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
-import { signOut } from '../blog/actions';
+import { signOut } from '@/app/blog/actions';
 
 const MenuItem = styled(MuiMenuItem)({
   margin: '2px 0',
