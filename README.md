@@ -1,4 +1,5 @@
 # FullStackBlog
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/aren28/FullStackBlog?utm_source=oss&utm_medium=github&utm_campaign=aren28%2FFullStackBlog&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
 Next.js13/Prisma/Supabase/Typescriptを利用しています。
 ※2025年4月に構築開始
