@@ -1,20 +1,20 @@
 # 🚀 FullStackBlog
 
-Next.js、Prisma、Tailwind CSS、Supabase を使って構築された、モダンで高機能なフルスタックブログアプリケーションです。  
+Next.js、Prisma、Tailwind CSS、Supabase を使って構築された、モダンで高機能なフルスタックブログアプリケーションです。
 
 ---
 
 ## ✨ 主な機能
 
-- 📝 **Markdown対応のブログ投稿**  
-- 🔒 **Supabaseによる認証機能**  
-- ⚡ **Next.js 15による超高速表示**  
-- 🎨 **Tailwind & MUIによる美しいUI**  
-- 💾 **Prisma ORM & PostgreSQL対応**  
-- 🚀 **TypeScript・ESLint・Prettier導入**  
-- 📦 **Redux Toolkitによる状態管理**  
-- 📱 **レスポンシブデザイン・モバイル対応**  
-- 🦾 **簡単なテーマカスタマイズ**  
+- 📝 **Markdown対応のブログ投稿**
+- 🔒 **Supabaseによる認証機能**
+- ⚡ **Next.js 15による超高速表示**
+- 🎨 **Tailwind & MUIによる美しいUI**
+- 💾 **Prisma ORM & PostgreSQL対応**
+- 🚀 **TypeScript・ESLint・Prettier導入**
+- 📦 **Redux Toolkitによる状態管理**
+- 📱 **レスポンシブデザイン・モバイル対応**
+- 🦾 **簡単なテーマカスタマイズ**
 
 ---
 
@@ -33,6 +33,7 @@ src/
   middleware.ts   # Next.jsミドルウェア
   types.ts        # TypeScript型定義
 ```
+
 [全てのソースツリーはこちら →](https://github.com/aren28/FullStackBlog/tree/main/src)
 
 ---
@@ -40,28 +41,32 @@ src/
 ## 🚦 開発を始めるには
 
 1. **リポジトリをクローン**
-    ```bash
-    git clone https://github.com/aren28/FullStackBlog.git
-    cd FullStackBlog
-    ```
+
+   ```bash
+   git clone https://github.com/aren28/FullStackBlog.git
+   cd FullStackBlog
+   ```
 
 2. **依存パッケージのインストール**
-    ```bash
-    npm install
-    ```
+
+   ```bash
+   npm install
+   ```
 
 3. **環境変数の設定**  
-    `.env.example` を `.env` にコピーし、必要な値を入力してください。
+   `.env.example` を `.env` にコピーし、必要な値を入力してください。
 
 4. **データベースマイグレーションの実行**
-    ```bash
-    npx prisma migrate dev
-    ```
+
+   ```bash
+   npx prisma migrate dev
+   ```
 
 5. **開発用サーバーの起動**
-    ```bash
-    npm run dev
-    ```
+
+   ```bash
+   npm run dev
+   ```
 
 6. **[http://localhost:3000](http://localhost:3000) をブラウザで開く**
 
