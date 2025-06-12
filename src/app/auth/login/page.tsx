@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { login } from './actions';
+import { login } from '../actions';
 import {
   Box,
   Button,
@@ -51,12 +51,12 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     position: 'absolute',
     zIndex: -1,
     inset: 0,
-    backgroundImage: 'url(img/common_bg.png)',
+    backgroundImage: 'url(/img/common_bg.png)',
     backgroundRepeat: 'round',
   },
 }));
 
-const Register = () => {
+const Login = () => {
   const [emailError, setEmailError] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [passwordError, setPasswordError] = useState(false);
@@ -101,8 +101,6 @@ const Register = () => {
 
     const valid = validateInputs(data.get('email') as string, data.get('password') as string);
 
-    console.log('handleSubmit', emailError, passwordError);
-
     if (emailError || passwordError) {
       console.log('入力エラーがあります。');
       return;
@@ -112,11 +110,6 @@ const Register = () => {
       console.log('入力が無効です。');
       return;
     }
-
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
 
     try {
       event.preventDefault();
@@ -238,7 +231,7 @@ const Register = () => {
             </Button>
             <Typography sx={{ textAlign: 'center' }}>
               アカウント登録しますか？{' '}
-              <Link href="#" variant="body2" sx={{ alignSelf: 'center' }}>
+              <Link href="/auth/signup" variant="body2" sx={{ alignSelf: 'center' }}>
                 無料登録
               </Link>
             </Typography>
@@ -249,4 +242,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

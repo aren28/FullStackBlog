@@ -20,7 +20,7 @@ export async function login(formData: FormData) {
   }
 
   revalidatePath('/', 'layout');
-  redirect('/blog'); // ← ここを修正
+  redirect('/blog');
 }
 
 export async function signup(formData: FormData) {
@@ -34,9 +34,9 @@ export async function signup(formData: FormData) {
   const { error } = await supabase.auth.signUp(data);
 
   if (error) {
+    console.error('Sign up error:', error);
     redirect('/error');
   }
 
   revalidatePath('/', 'layout');
-  redirect('/');
 }

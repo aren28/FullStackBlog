@@ -1,3 +1,5 @@
+'use client';
+
 import { toast, ToastOptions } from 'react-toastify';
 
 const defaultOptions: ToastOptions = {
