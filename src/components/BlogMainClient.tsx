@@ -15,18 +15,21 @@ import { useRouter } from 'next/navigation';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-export default function BlogMainClient({
-  user,
-}: {
-  user: string | undefined;
-}): ReactNode | Promise<ReactNode> {
+type UserProps = {
+  user: {
+    email?: string;
+    id?: string;
+  };
+};
+
+export default function BlogMainClient({ user }: UserProps): ReactNode | Promise<ReactNode> {
   const { data, error, isLoading } = useGetBlogAllQuery();
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    dispatch(setUser(user));
-    if (user == undefined || user == null) {
+    dispatch(setUser({ email: user.email, id: user.id }));
+    if (user.email == undefined || user.email == null) {
       router.push('/login');
     }
   }, [user, dispatch, router]);

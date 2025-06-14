@@ -7,5 +7,5 @@ export default async function BlogMain() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  return <BlogMainClient user={user?.email} />;
+  return <BlogMainClient user={{ email: user?.email, id: user?.id }} />;
 }

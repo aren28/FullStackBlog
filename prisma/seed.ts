@@ -16,17 +16,17 @@ async function main() {
       {
         title: 'testBlog1',
         description: 'testBlog1Description',
-        userProfileId: process.env.DEFAULT_SUPABASE_USER_ID,
+        userprofileid: process.env.DEFAULT_SUPABASE_USER_ID,
       },
       {
         title: 'testBlog2',
         description: 'testBlog2Description',
-        userProfileId: process.env.DEFAULT_SUPABASE_USER_ID,
+        userprofileid: process.env.DEFAULT_SUPABASE_USER_ID,
       },
       {
         title: 'testBlog3',
         description: 'testBlog3Description',
-        userProfileId: process.env.DEFAULT_SUPABASE_USER_ID,
+        userprofileid: process.env.DEFAULT_SUPABASE_USER_ID,
       },
     ],
     skipDuplicates: true,

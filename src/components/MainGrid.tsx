@@ -44,6 +44,9 @@ export default function MainGrid({ formattedDateList }: { formattedDateList: Pos
                 作成日時
               </TableCell>
               <TableCell sx={{ color: 'black' }} align="right">
+                作成者
+              </TableCell>
+              <TableCell sx={{ color: 'black' }} align="right">
                 操作
               </TableCell>
             </TableRow>
@@ -59,6 +62,9 @@ export default function MainGrid({ formattedDateList }: { formattedDateList: Pos
                 </TableCell>
                 <TableCell align="right" sx={{ color: 'black' }}>
                   {blog.DateTime}
+                </TableCell>
+                <TableCell align="right" sx={{ color: 'black' }}>
+                  {blog.userprofileid ? blog.userprofileid : '未設定'}
                 </TableCell>
                 <TableCell align="right" sx={{ color: 'black' }}>
                   <Link href={`/blog/edit/${blog.id}`}>編集</Link>

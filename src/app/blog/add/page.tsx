@@ -6,12 +6,13 @@ import { ToastContainer } from 'react-toastify';
 import { Box, Typography, TextField, Button, Paper } from '@mui/material';
 import { useToast } from '@/hooks/useToast';
 import { PostBlogType } from '@/types';
+import { useAppSelector } from '@/hooks/useAppSelector';
 
-const postBlogData = async ({ title, description, userProfileId }: PostBlogType) => {
+const postBlogData = async ({ title, description, userprofileid }: PostBlogType) => {
   const res = await fetch('http://localhost:3000/api/blog', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title, description, userProfileId }),
+    body: JSON.stringify({ title, description, userprofileid }),
   });
 
   if (!res.ok) {
@@ -21,7 +22,10 @@ const postBlogData = async ({ title, description, userProfileId }: PostBlogType)
 
 export default function PostBlog() {
   const redirect = useRouter();
+  const { user } = useAppSelector((state) => state.user);
   const { showSuccess, showInfo } = useToast();
+
+  console.log('object', user);
 
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
@@ -40,10 +44,10 @@ export default function PostBlog() {
       await postBlogData({
         title: titleRef.current.value,
         description: descriptionRef.current.value,
-        userProfileId: process.env.DEFAULT_SUPABASE_USER_ID || '',
+        userprofileid: user?.id || '',
       });
       showSuccess('投稿が完了しました。');
-      redirect.push('/');
+      redirect.push('/blog');
     } catch (error) {
       console.error(error);
     }

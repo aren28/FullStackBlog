@@ -30,13 +30,13 @@ export const GET = async (_req: Request, { params: _ }: { params: Promise<{ id: 
 // ブログの投稿用API
 export const POST = async (req: Request, { params: _ }: { params: Promise<{ id: string }> }) => {
   try {
-    const { title, description, userId } = await req.json();
+    const { title, description, userprofileid } = await req.json();
     await main();
     const post = await prisma.post.create({
       data: {
         title,
         description,
-        userProfileId: userId,
+        userprofileid: userprofileid || 'default-user-id', // ユーザープロフィールIDがない場合のデフォルト値
       },
     });
     return NextResponse.json({ message: `Sucessです。`, post }, { status: 201 });
