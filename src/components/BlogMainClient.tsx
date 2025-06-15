@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode, useEffect } from 'react';
-import { useGetBlogAllQuery } from '../store/services/blog';
+import { useGetBlogSelectedQuery } from '../store/services/blog';
 import MainGrid from '../components/MainGrid';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -17,13 +17,13 @@ dayjs.extend(timezone);
 
 type UserProps = {
   user: {
-    email?: string;
-    id?: string;
+    email: string;
+    id: string;
   };
 };
 
 export default function BlogMainClient({ user }: UserProps): ReactNode | Promise<ReactNode> {
-  const { data, error, isLoading } = useGetBlogAllQuery();
+  const { data, error, isLoading } = useGetBlogSelectedQuery(user.id);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
