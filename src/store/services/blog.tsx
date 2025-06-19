@@ -21,7 +21,9 @@ export const blogApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api/blog/' }),
   endpoints: (build) => ({
     getBlogAll: build.query<PostType, void>({ query: () => '' }),
-    getBlogSelected: build.query<PostType, string>({ query: (id) => `single/${id}` }),
+    getBlogSelected: build.query<PostType, string>({
+      query: (id) => `single/${id}`,
+    }),
   }),
 });
 

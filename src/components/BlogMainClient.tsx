@@ -23,7 +23,7 @@ type UserProps = {
 };
 
 export default function BlogMainClient({ user }: UserProps): ReactNode | Promise<ReactNode> {
-  const { data, error, isLoading } = useGetBlogSelectedQuery(user.id);
+  const { data, error, isLoading, refetch } = useGetBlogSelectedQuery(user.id);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -32,7 +32,10 @@ export default function BlogMainClient({ user }: UserProps): ReactNode | Promise
     if (user.email == undefined || user.email == null) {
       router.push('/login');
     }
-  }, [user, dispatch, router]);
+
+    // データ更新
+    refetch();
+  }, [user, dispatch, router, data, refetch]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;

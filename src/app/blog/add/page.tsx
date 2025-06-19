@@ -47,6 +47,7 @@ export default function PostBlog() {
         userprofileid: user?.id || '',
       });
       showSuccess('投稿が完了しました。');
+
       redirect.push('/blog');
     } catch (error) {
       console.error(error);
