@@ -4,6 +4,48 @@ Next.js、Prisma、Tailwind CSS、Supabase を使って構築された、モダ�
 
 ---
 
+## 画面遷移図
+
+```mermaid
+graph TD
+
+    %% ユーザー向け画面
+    Top[トップページ]
+    BlogList[ブログ一覧]
+    BlogDetail[ブログ詳細]
+
+    %% 管理者向け画面
+    AdminLogin[ログイン画面]
+    AdminRegister[アカウント登録画面]
+    AdminDashboard[ダッシュボード]
+    BlogAdd[ブログ追加画面]
+    BlogEdit[ブログ更新画面]
+    BlogDelete[ブログ削除確認画面]
+    AdminProfile[プロフィール編集画面]
+    AdminLogout[ログアウト画面]
+
+    %% 公開側の流れ
+    Top --> BlogList
+    BlogList --> BlogDetail
+
+    %% 管理者の流れ
+    Top --> AdminLogin
+    AdminLogin -- アカウント未所持 --> AdminRegister
+    AdminRegister --> AdminDashboard
+    AdminLogin -- アカウント所持 --> AdminDashboard
+
+    AdminDashboard -- ブログ追加 --> BlogAdd
+    AdminDashboard -- ブログ編集 --> BlogEdit
+    AdminDashboard -- ブログ削除 --> BlogDelete
+    AdminDashboard -- プロフィール編集 --> AdminProfile
+    AdminDashboard -- ログアウト --> AdminLogout
+
+    BlogAdd --> AdminDashboard
+    BlogEdit --> AdminDashboard
+    BlogDelete --> AdminDashboard
+    AdminProfile --> AdminDashboard
+    AdminLogout --> Top
+```
 ## ✨ 主な機能
 
 - 📝 **Markdown対応のブログ投稿**
