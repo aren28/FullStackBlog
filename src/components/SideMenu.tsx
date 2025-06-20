@@ -24,7 +24,7 @@ const Drawer = styled(MuiDrawer)({
   },
 });
 
-export default function SideMenu() {
+export default function SideMenu({ user }: { user: string }): React.ReactElement {
   return (
     <Drawer
       variant="permanent"
@@ -71,7 +71,7 @@ export default function SideMenu() {
             textOverflow={'ellipsis'}
             sx={{ fontWeight: 500, lineHeight: '16px', width: '135px', textWrap: 'wrap' }}
           >
-            {'未確認ユーザー'}
+            {user ? user : '未確認ユーザー'}
           </Typography>
         </Box>
         <OptionsMenu />

@@ -1,15 +1,30 @@
 import SideMenu from '@/components/SideMenu';
 import { ReactNode } from 'react';
 import Box from '@mui/material/Box';
+import { createClient } from '@/utils/supabase/server';
+import { redirect } from 'next/navigation';
 
 interface BlogLayoutProps {
   children: ReactNode;
 }
 
-const BlogLayout = ({ children }: BlogLayoutProps) => {
+export default async function BlogLayout({ children }: BlogLayoutProps): Promise<ReactNode> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return redirect('/login');
+  }
+
+  if (!user.email || !user.id) {
+    return redirect('/login');
+  }
+
   return (
     <>
-      <SideMenu />
+      <SideMenu user={user.email} />
       <Box
         component={'main'}
         sx={{
@@ -23,6 +38,4 @@ const BlogLayout = ({ children }: BlogLayoutProps) => {
       </Box>
     </>
   );
-};
-
-export default BlogLayout;
+}
