@@ -25,8 +25,6 @@ export default function PostBlog() {
   const { user } = useAppSelector((state) => state.user);
   const { showSuccess, showInfo } = useToast();
 
-  console.log('object', user);
-
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
